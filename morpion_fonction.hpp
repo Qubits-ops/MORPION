@@ -1,9 +1,9 @@
-bool is_winner();
-bool filled_up();
 void introduction();
-void take_turn();
-void set_position();
-void update_board();
-void change_player();
 void draw();
+bool is_winner();
+bool remplir();
+void tourne();
 void end_game();
+void change_player();
+void tableau_a_jour();
+void setPosition();
