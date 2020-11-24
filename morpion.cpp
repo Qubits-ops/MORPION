@@ -1,12 +1,12 @@
+#include <cstdlib>
 #include <iostream>
-#include "play.hpp"
+#include <vector>
+#include "morpion_fonction.hpp"
+
+using namespace std;
 
 int main() {
-
-  introduction();
-  
-  take_turn();
-
-  end_game();
-    
+	introduction();
+	tourne();
+	end_game();
 }
