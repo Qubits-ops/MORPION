@@ -1,184 +1,141 @@
 #include <iostream>
-#include "play.hpp"
+#include <ctime>
+#include <cstdlib>
+#include <vector>
 
-std::string board[9] = {" ", " ", " ", " ", " ", " ", " ", " ", " "};
+using namespace std;
+
+string tab[9] = {" "," "," "," "," "," "," "," "};
 int player = 1;
-int position = 0;
+int pos = 0;
 
 void introduction() {
-
-  std::cout << "Press [Enter] to begin: ";
-  std::cin.ignore();
-
-  std::cout << "\n";
-
-  std::cout << "===========\n";
-  std::cout << "Tic-Tac-Toe\n";
-  std::cout << "===========\n\n";
-  
-  std::cout << "Player 1) X\n";
-  std::cout << "Player 2) O\n\n";
-
-  std::cout << "Here's the 3 x 3 grid:\n\n";
-
-  std::cout << "     |     |      \n";
-  std::cout << "  1  |  2  |  3   \n";
-  std::cout << "_____|_____|_____ \n";
-  std::cout << "     |     |      \n";
-  std::cout << "  4  |  5  |  6   \n";
-  std::cout << "_____|_____|_____ \n";
-  std::cout << "     |     |      \n";
-  std::cout << "  7  |  8  |  9   \n";
-  std::cout << "     |     |      \n\n";
-
-}
-
-bool is_winner() {
-
-  bool winner = false;
-  // rows
-  if ((board[0] == board[1]) && (board[1] == board[2]) && board[0] != " ") {
-    winner = true;
-  } else if ((board[3] == board[4]) && (board[3] == board[5]) && board[3] != " ") {
-    winner = true;
-  } else if ((board[6] == board[7]) && (board[6] == board[8]) && board[6] != " ") {
-    winner = true;
-  } 
-  // columns
-  else if ((board[0] == board[3]) && (board[0] == board[6]) && board[0] != " ") {
-    winner = true;
-  } else if ((board[1] == board[4]) && (board[1] == board[7]) && board[1] != " ") {
-    winner = true;
-  } else if ((board[2] == board[5]) && (board[2] == board[8]) && board[2] != " ") {
-    winner = true;
-  } // diagonals
-  else if ((board[0] == board[4]) && (board[0] == board[8]) && board[0] != " ") {
-    winner = true;
-  }
-  else if ((board[2] == board[4]) && (board[2] == board[6]) && board[2] != " ") {
-    winner = true;
-  }
-
-  return winner;
-
-}
-
-bool filled_up() {
-
-  bool filled = true;
-
-  for (int i = 0; i < 9; i++) {
-
-    if (board[i] == " ") {
-
-      filled = false;
-
-    }
-
-  }
-
-  return filled;
-
+	cout << "---------------------------------\n";
+	cout << "---------------------------------\n";
+	cout << "           MORPION				          \n";
+	cout << "---------------------------------\n";
+	cout << "---------------------------------\n";
+	cout << "\n";
+	cout << "Player1:" << "'X'\n";
+	cout << "Player2:" << "'O'\n";
+	std::cout << "     |     |      \n";
+	std::cout << "  1  |  2  |  3   \n";
+	std::cout << "_____|_____|_____ \n";
+	std::cout << "     |     |      \n";
+	std::cout << "  4  |  5  |  6   \n";
+	std::cout << "_____|_____|_____ \n";
+	std::cout << "     |     |      \n";
+	std::cout << "  7  |  8  |  9   \n";
+	std::cout << "     |     |      \n\n";
 }
 void draw() {
+	cout << "     |     |      \n";
 
-  std::cout << "     |     |      \n";
+	cout << "  " << tab[0] << "  |  " << tab[1] << "  |  " << tab[2] << "\n";
 
-  std::cout << "  " << board[0] << "  |  " << board[1] << "  |  " << board[2] << "\n";
+	cout << "_____|_____|_____ \n";
+	cout << "     |     |      \n";
 
-  std::cout << "_____|_____|_____ \n";
-  std::cout << "     |     |      \n";
+	cout << "  " << tab[3] << "  |  " << tab[4] << "  |  " << tab[5] << "\n";
 
-  std::cout << "  " << board[3] << "  |  " << board[4] << "  |  " << board[5] << "\n";
+	cout << "_____|_____|_____ \n";
+	cout << "     |     |      \n";
 
-  std::cout << "_____|_____|_____ \n";
-  std::cout << "     |     |      \n";
+	cout << "  " << tab[6] << "  |  " << tab[7] << "  |  " << tab[8] << "\n";
+	cout << "     |     |      \n";
 
-  std::cout << "  " << board[6] << "  |  " << board[7] << "  |  " << board[8] << "\n";
-  std::cout << "     |     |      \n";
-
-  std::cout << "\n";
-    
+	cout << "\n";
+}
+bool is_winner(){
+	bool winner = false;
+	if (tab[0] == tab[1] && tab[1] == tab[2] && tab[0] != " ") {
+		winner = true;
+	}
+	else if (tab[0] == tab[3] && tab[0] == tab[6] && tab[0] != " ") {
+		winner = true;
+	}
+	else if (tab[1] == tab[4] && tab[1] == tab[7] && tab[1] != " ") {
+		winner = true;
+	}
+	else if (tab[2] == tab[5] && tab[2] == tab[8] && tab[2] != " ") {
+		winner = true;
+	}
+	else if (tab[3] == tab[4] && tab[3] == tab[5] && tab[3] != " ") {
+		winner = true;
+	}
+	else if (tab[6] == tab[7] && tab[6] == tab[8] && tab[6] != " ") {
+		winner = true;
+	}
+	else if (tab[0] == tab[4] && tab[0] == tab[8] && tab[0] != " ") {
+		winner = true;
+	}
+	else if (tab[2] == tab[4] && tab[2] == tab[6] && tab[2] != " ") {
+		winner = true;
+	}
+	return winner;
 }
 
-void set_position() {
-
-  std::cout << "Player " << player << "'s Turn (Enter 1-9): ";
-
-  while (!(std::cin >> position)) {
-
-    std::cout << "Player " << player << ", please enter a valid number between 1 and 9: ";
-    std::cin.clear();
-    std::cin.ignore();
-
-  }
-  
-  std::cout << "\n";
-
-  while (board[position-1] != " ") {
-
-    std::cout << "Oops, there's already something in that position!\n\n";
-
-    std::cout << "Player " << player << "'s Turn (Enter 1-9): ";
-    std::cin >> position;
-
-    std::cout << "\n";
-  }
-
+bool remplir() {
+	bool rempli = true;
+	for (int i = 0; i < 9; i++) {
+		if (tab[i] == " ") {
+			rempli = false;
+		}
+	}
+	return rempli;
 }
+void setPosition() {
+	cout << "Player" << player << " rentrer un nombre de 1 a 9: \n";
 
-void update_board() {
+	while (!(cin >> pos)) {
+		cout << "Player" << player << "rentrer un nombre de 1 a 9: \n";
+		cin.clear();
+		cin.ignore();
+	}
 
-  if (player % 2 == 1) {
+	cout << "\n";
 
-    board[position-1] = "X";
+	while (tab[pos - 1] != " ") {
 
-  } else {
+		cout << "deja quelque chose a cette position\n";
 
-    board[position-1] = "O";
-
-  }
-
+		cout << "Player: " << player << "rentrer un nombre de 1 a 9: \n";
+		cin >> pos;
+		
+		cout << "\n";
+	}
+}
+void tableau_a_jour() {
+	if (player % 2 == 1) {
+		tab[pos - 1] = "X";
+	}
+	else {
+		tab[pos - 1] = "O";
+	}
 }
 
 void change_player() {
-
-  if (player == 1) {
-
-    player++;
-
-  } else {
-  
-    player--;
-  
-  }
-
+	if (player == 1) {
+		player++;
+	}
+	else {
+		player--;
+	}
 }
-
-void take_turn() {
-
-  while ( !is_winner() && !filled_up() ) {
-  
-    set_position();
-
-    update_board();
-
-    change_player();
-
-    draw();
-  
-  }
-
+void tourne() {
+	while (!is_winner() && !remplir()) {
+		setPosition();
+		tableau_a_jour();
+		change_player();
+		draw();
+	}
 }
-
 void end_game() {
+	if (is_winner()) {
+		cout << "Il y a un gagnant\n";
+	}
+	else if(remplir()) {
+		cout << "Houps le morpion est remplis pas de gagnant !\n";
 
-  if (is_winner()) {
-    std::cout << "There's a winner!\n";
-  }
-  else if (filled_up()) {
-    std::cout << "There's a tie!\n";
-  }
-
+	}
 }
-
